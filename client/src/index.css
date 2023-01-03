@@ -200,11 +200,28 @@ button:hover{
 }
 #welcome-con{
   margin-top: 100px;
+  display: grid;
+  place-content: center;
 }
 .welcome-title {
   color: #DB3945;
   font-size: 72px;
+  text-align: center;
 }
+
+.welcome-info{
+margin: auto;
+}
+.welcome-user{
+  color: #626AE3;
+  font-size: 36px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.welcome-avatar{
+clip-path: circle(40%);
+}
+
 /* .flip-post-card {
   background-color: transparent;
   width: 300px;

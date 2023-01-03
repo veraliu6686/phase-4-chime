@@ -13,7 +13,7 @@ function PostForm ({postsData, setPostsData, userData}){
             tag: ""
         }
     )
-    console.log(newPostObj, userData.id)
+    // console.log(newPostObj, userData.id)
 
     function handleSubmit(e){
         e.preventDefault();

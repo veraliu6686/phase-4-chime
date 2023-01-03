@@ -20,7 +20,7 @@ function CommentItem( {comment, setComments, userData}){
         fetch(`/comments/${comment.id}`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
-            body:JSON.stringify( {content: updateContent})
+            body: JSON.stringify( {content: updateContent})
         })
         .then ( res => res.json())
         .then ( newContent => updateComment(newContent))
@@ -41,7 +41,6 @@ function CommentItem( {comment, setComments, userData}){
         .then( () => { deleteComment(comment.id)} )
 
     }
-
     return (
         <div className="comment-list">
             <div className= "btn-div">

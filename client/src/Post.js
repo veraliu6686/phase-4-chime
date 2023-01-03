@@ -1,13 +1,27 @@
 import Comment from "./Comment";
 import {useState} from "react";
 
-function Post({postObj, userData}){
+function Post({postObj, userData, setPostsData}){
 
     const [showComment, setShowComment] = useState (false)
+
     const flipPost = () => {
         setShowComment(!showComment)
     }
-    console.log(postObj.user_data.avatar)
+
+    const deletePost = id => {
+
+        setPostsData(currentPost => currentPost.filter( post => post.id !== id ))
+        
+    }
+
+
+    const handleDelete = () => {
+        fetch(`/posts/${postObj.id}`, {
+            method: 'DELETE'
+        })
+        .then( () => { deletePost(postObj.id)} )
+    }
     return(
     <div className ="flip-post-card" >
         { showComment ?
@@ -32,7 +46,12 @@ function Post({postObj, userData}){
                         <img className="user-profile-pic" src={postObj.user_data.avatar} alt="user"/>
                         <p className="post-username">{postObj.user_data.username}</p>
                     </div>
-            </div>
+                    <div className = "post-delete-button-div">
+                        { postObj.user_id === userData.id ? (
+                        <button onClick = {handleDelete} className = "post-delete-button">Delete</button>)
+                        : <></>}
+                    </div>
+                </div>
             </div> )
         }
     </div>

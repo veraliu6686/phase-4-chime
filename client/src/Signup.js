@@ -66,10 +66,9 @@ function SignupForm ( {switchPage, updateUser} ){
                         value = {email}
                         onChange = {handleChange}
                         />
-                    <label htmlFor ="password">password: </label>
+                    <label>password: </label>
                     <input
                         type = "password"
-                        id ="password"
                         placeholder = 'enter password'
                         name = "password"
                         value = {password}

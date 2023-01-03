@@ -5,7 +5,7 @@ function PostList({postsData, setPostsData, userData}){
 
     const renderPosts = postsData.map(postObj => {
         return (
-                <Post key={postObj.id} postObj={postObj} userData={userData}/>
+                <Post key={postObj.id} postObj={postObj} userData={userData} setPostsData = {setPostsData}/>
         )
     })
 

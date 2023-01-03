@@ -17,31 +17,31 @@ function App() {
   },[])
 
   useEffect(() => {
-      fetch("/authorized_user")
-      .then((res) => {
-        if (res.ok) {
-          res.json()
-          .then((user) => {
-            updateUser(user);
-          });
-        }
-      })
-    },[])
+    fetch("/authorized_user")
+    .then((res) => {
+      if (res.ok) {
+        res.json()
+        .then((user) => {
+          updateUser(user);
+        });
+      }
+    })
+    },[userData.id])
+
+    useEffect( () =>{
+      fetch ("/users/:id")
+      .then ( res => res.json())
+      .then (setUserData)
+    },[currentUser])
 
   const updateUser = (user) => setCurrentUser(user)
-
-  useEffect( () =>{
-    fetch ("/users/:id")
-    .then ( res => res.json())
-    .then (setUserData)
-  },[])
 
   return (
     <>
       {currentUser ? <NavBar updateUser = {updateUser}/> : null}
       <Routes>
         <Route path= "/" element= {<Home updateUser = {updateUser} />}> </Route>
-        <Route path= "/welcome" element= {<Welcome />}> </Route>
+        <Route path= "/welcome" element= {<Welcome userData= { userData }/>}> </Route>
         <Route path= "/posts" element= {<PostList setPostsData= {setPostsData} postsData={postsData} userData= { userData } />}> </Route>
         {/* <Route path= "/posts" element= {<PostList allUserData = {allUserData} setPostsData= {setPostsData} postsData={postsData} userData= { userData }/>}> </Route> */}
       </Routes>

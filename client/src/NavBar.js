@@ -22,7 +22,7 @@ function NavBar( {updateUser}){
         <div className= "navbar-div">
             <div className="logo-name">
                 <h1> Chime </h1>
-                <img src = {require("./image/chimelogo-ch.png")} alt = "logo"/>
+                <img src = {require("./image/chimelogo-ch.jpg")} alt = "logo"/>
             </div>
            <div className= "navbar-list">
                 {/* <NavLink to="/">

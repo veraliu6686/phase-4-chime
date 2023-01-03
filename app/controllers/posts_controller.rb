@@ -19,9 +19,18 @@ class PostsController < ApplicationController
         new_post = Post.create!(post_params)
         render json: new_post, status: :created
     end
+    
+    def destroy   
+        Post.find(params[:id]).destroy
+        head :no_content
+    end
 
     private
     def post_params
         params.permit(:description, :image_url, :tag, :user_id)
     end
 end
+
+
+            
+                                            # 

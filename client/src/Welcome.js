@@ -1,10 +1,21 @@
 import React from "react";
 // import ReactLoading from "react-loading";
 
-function Welcome(){
+function Welcome({userData}){
     return(
         <div id = "welcome-con">
-      <h2 className="welcome-title">Welcome to Chime </h2>
+      <h2 className = "welcome-title">Welcome Back to Chime</h2>
+     
+    <div  className = "welcome-info"> 
+    <div> 
+        <div>
+          <img  className = "welcome-avatar" src = {userData.avatar} alt = {userData.username}/>
+        </div>
+      </div>
+      <h3 className = "welcome-user"> {userData.username}</h3>
+    </div> 
+
+
       {/* <img src =  */}
       {/* <ReactLoading type="balls" color="#0000FF"
         height={100} width={50} />
