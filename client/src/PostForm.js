@@ -58,8 +58,42 @@ function PostForm ({postsData, setPostsData, userData}){
                         name="description" type="text" value= {newPostObj.description} placeholder="Description"/>
                         <input className = "post-input" onChange={(e) => setNewPostObj({...newPostObj, image_url: e.target.value})}
                         name="image_url" type="text" value= {newPostObj.image_url} placeholder="Image Link"/>
-                        <input className = "post-input"onChange={(e) => setNewPostObj({...newPostObj, tag: e.target.value})}
-                        name="tag" type="text" value= {newPostObj.tag} placeholder="Add a tag"/>
+                        <select className = "post-form-tags" onChange={(e) => setNewPostObj({...newPostObj, tag: e.target.value})}
+                        name="tag" type="text" value= {newPostObj.tag} placeholder="Add a tag">
+                            <option value="Adventure">Adventure</option>
+                            <option value="Autumn">Autumn</option>
+                            <option value="Cinema">Cinema</option>
+                            <option value="Fall">Fall</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Food">Food</option>
+                            <option value="Friendship">Friendship</option>
+                            <option value="Funny">Funny</option>
+                            <option value="Gaming">Gaming</option>
+                            <option value="Geography">Geography</option>
+                            <option value="Hardship">Hardship</option>
+                            <option value="History">History</option>
+                            <option value="Inspirational">Inspirational</option>
+                            <option value="Literature">Literature</option>
+                            <option value="Music">Music</option>
+                            <option value="Mystery">Mystery</option>
+                            <option value="Pet">Pet</option>
+                            <option value="Deep">Philosophy</option>
+                            <option value="Photography">Photography</option>
+                            <option value="Politics">Politics</option>
+                            <option value="Relationship">Relationship</option>
+                            <option value="Romantic">Romantic</option>
+                            <option value="Science">Science</option>
+                            <option value="Sport">Sport</option>
+                            <option value="Spring">Spring</option>
+                            <option value="Summer">Summer</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Winter">Winter</option>
+                            <option value="Work">Work</option>  
+                        </select>
+
+                        {/* <input className = "post-input"onChange={(e) => setNewPostObj({...newPostObj, tag: e.target.value})}
+                        name="tag" type="text" value= {newPostObj.tag} placeholder="Add a tag"/> */}
                         <div className="post-form-button">
                             <button className = "lg-btn" type="submit">New Post</button>
                         </div>

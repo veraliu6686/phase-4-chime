@@ -4,6 +4,8 @@ import Home from "./Home";
 import NavBar from "./NavBar";
 import Welcome from "./Welcome";
 import PostList from "./PostList"
+import Profile from "./Profile";
+
 
 function App() {
   const [ postsData, setPostsData ] = useState([])
@@ -43,6 +45,7 @@ function App() {
         <Route path= "/" element= {<Home updateUser = {updateUser} />}> </Route>
         <Route path= "/welcome" element= {<Welcome userData= { userData }/>}> </Route>
         <Route path= "/posts" element= {<PostList setPostsData= {setPostsData} postsData={postsData} userData= { userData } />}> </Route>
+        <Route path= "/profile" element = {<Profile userData = {userData} postsData = {postsData} />}></Route>
         {/* <Route path= "/posts" element= {<PostList allUserData = {allUserData} setPostsData= {setPostsData} postsData={postsData} userData= { userData }/>}> </Route> */}
       </Routes>
     </>

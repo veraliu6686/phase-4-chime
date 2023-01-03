@@ -49,31 +49,35 @@ function SignupForm ( {switchPage, updateUser} ){
                     <h1> SIGNUP</h1>
                 </div>
                 <div className = "input-box">
-                    <label htmlFor = "username">username: </label>
-                    <input
-                        type = "text"
-                        id = "username"
-                        placeholder = 'enter username'
-                        name = "username"
-                        value = {username}
-                        onChange = {handleChange}/>
-                    <label htmlFor = "email">email: </label>
-                    <input
-                        type = "text"
-                        id = "email"
-                        placeholder = 'enter your email'
-                        name = "email"
-                        value = {email}
-                        onChange = {handleChange}
+                    <div className = "input-div">
+                        <i className="fa-solid fa-user fa-lg"></i>
+                        <input
+                            type = "text"
+                            placeholder = 'enter username'
+                            name = "username"
+                            value = {username}
+                            onChange = {handleChange}/>
+                    </div>
+                    <div className = "input-div">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input
+                            type = "text"
+                            placeholder = 'enter your email'
+                            name = "email"
+                            value = {email}
+                            onChange = {handleChange}
+                            />
+                    </div>
+                    <div className = "input-div">
+                        <i className="fa-solid fa-lock fa-lg"></i>
+                        <input
+                            type = "password"
+                            placeholder = 'enter password'
+                            name = "password"
+                            value = {password}
+                            onChange = {handleChange}
                         />
-                    <label>password: </label>
-                    <input
-                        type = "password"
-                        placeholder = 'enter password'
-                        name = "password"
-                        value = {password}
-                        onChange = {handleChange}
-                    />
+                    </div>
                     <div style={ {margin : "10px" }}>
                         {submited ?
                         <p className = 'link-btn' onClick = {switchPage}> Successed, log in here</p>

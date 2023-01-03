@@ -1,5 +1,7 @@
-import Comment from "./Comment";
 import {useState} from "react";
+import { Routes, Route, NavLink } from "react-router-dom"
+import Comment from "./Comment";
+// import Profile from "./Profile";
 
 function Post({postObj, userData, setPostsData}){
 
@@ -15,7 +17,6 @@ function Post({postObj, userData, setPostsData}){
         
     }
 
-
     const handleDelete = () => {
         fetch(`/posts/${postObj.id}`, {
             method: 'DELETE'
@@ -23,7 +24,16 @@ function Post({postObj, userData, setPostsData}){
         .then( () => { deletePost(postObj.id)} )
     }
     return(
-    <div className ="flip-post-card" >
+    <div>
+            {/* currentuser's posts */}
+            {/* <div>
+           <Routes>
+               <Route path= "/profile" element = { <Profile userData = {userData} postObj = {postObj} handleDelete = {handleDelete} /> }></Route>
+            </Routes>
+            </div> */}
+
+            {/* otherusers's posts */}
+             <div className ="flip-post-card" >
         { showComment ?
             (<div className="post-container-back">
 
@@ -54,7 +64,9 @@ function Post({postObj, userData, setPostsData}){
                 </div>
             </div> )
         }
+        </div>
     </div>
+   
     )
 
 }

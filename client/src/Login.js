@@ -47,23 +47,25 @@ function LoginPage ( {switchPage, updateUser}){
                 <h1>LOG IN</h1>
             </div>
             <div className = "input-box">
-                <label htmlFor = "username">username: </label>
+                <div className = "input-div">
+                <i className="fa-solid fa-user fa-lg"></i>
                 <input
                     type = "text"
-                    id = "username"
                     name = "username"
                     value = {username}
                     placeholder = 'enter username'
                     onChange = {handleChange} />
-                <label htmlFor = "password">password: </label>
+                </div>
+                <div className = "input-div">
+                <i className="fa-solid fa-lock fa-lg"></i>
                 <input
                     type = "password"
-                    id ="password"
                     name = "password"
                     value = {password}
                     placeholder = 'enter password'
                     onChange = {handleChange}
                     />
+                </div>
                 <div style={ {margin : "10px" }}>
                     <p className = 'link-btn' onClick = {switchPage}> create an account</p>
                 </div>

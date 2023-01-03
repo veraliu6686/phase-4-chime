@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom"
 import{ useNavigate } from "react-router-dom"
+import Logo from "./image/chimelogo-ch.png"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function NavBar( {updateUser}){
 
@@ -20,21 +22,22 @@ function NavBar( {updateUser}){
     return (
     <div className= "navbar">
         <div className= "navbar-div">
-            <div className="logo-name">
-                <h1> Chime </h1>
-                <img src = {require("./image/chimelogo-ch.jpg")} alt = "logo"/>
+            <div className="logo">
+                <img src = {Logo} alt = "logo"/> 
             </div>
            <div className= "navbar-list">
-                {/* <NavLink to="/">
-                    <a className="home-nav">Home</a>
-                </NavLink> */}
                 <NavLink to="/welcome">
-                    <p  className="welcome-nav">Welcome!</p>
+                  <button className = "nav-btns">Welcome!</button>
+                </NavLink>
+                <NavLink to="/profile">
+                    <button className="nav-btns">Profile</button>
                 </NavLink>
                 <NavLink to="/posts">
-                    <p className="posts-nav">Posts</p>
+                <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" />
+                  <button className = "nav-btns">Posts</button>
                 </NavLink>
-                <button id= "logout-btn" onClick={handleLogOut}>Log Out</button>
+                <i class="fa-solid fa-right-from-bracket" style = {{marginRight : "60px" , padding : "15px", cursor: "pointer"}}  onClick = {handleLogOut}></i>
+                {/* <button className = "nav-btns" onClick = {handleLogOut}>Log Out</button> */}
            </div>
         </div>
     </div>
