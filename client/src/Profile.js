@@ -5,8 +5,8 @@ function Profile({userData, postsData}){
 
     const userPost = postsData.map((post) => {
         if (post.user_id === userData.id){
-            console.log(post.description)
             return (
+            <div className = "post-list">
                 <div className="post-container-front" >
                     <div className="post-card">
                         <div className="post-header">
@@ -15,16 +15,23 @@ function Profile({userData, postsData}){
                         <span className="post-tag">{post.tag}</span>
                         <div className="post-text">
                             <p className="post-description">{post.description}</p>
+                            <br></br>
+                            <div id = "like-btn">
+                                <i class="fa-solid fa-heart"></i>
+                                <p>{post.like_btn}</p>
+                            </div>
                         </div>
-                        {/* <div className="post-user-info">
+
+                        <div className="post-user-info">
                             <img className="user-profile-pic" src={post.user_data.avatar} alt="user"/>
                             <p className="post-username">{post.user_data.username}</p>
-                        </div> */}
+                        </div>
                         {/* <div className = "post-delete-button-div">
                             <button onClick = {handleDelete} className = "post-delete-button">Delete</button>
                         </div> */}
-                    </div>  
+                    </div>
                 </div>
+            </div>
             )
         }else{
             <NavLink to="/posts">
@@ -32,7 +39,7 @@ function Profile({userData, postsData}){
             </NavLink>
         }
     })
-    
+
     return(
         <div className = "profile-con">
             {userPost}

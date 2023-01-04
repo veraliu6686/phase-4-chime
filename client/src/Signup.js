@@ -6,10 +6,11 @@ function SignupForm ( {switchPage, updateUser} ){
     const [signupData, setSignupData] = useState({
         username: "",
         email: "",
-        password:""
+        password:"",
+        avatar: ""
     })
     const [errors, setErrors] = useState([])
-    const {username, email, password} = signupData
+    const {username, email, password, avatar} = signupData
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -17,7 +18,7 @@ function SignupForm ( {switchPage, updateUser} ){
             username,
             email,
             password,
-            avatar: "https://robohash.org/eumconsequaturlaborum.png?size=300x300&set=set1"
+            avatar
         }
         fetch('/users',{
             method:'POST',
@@ -34,6 +35,15 @@ function SignupForm ( {switchPage, updateUser} ){
             }
         })
         setSubmited(!submited)
+
+        setSignupData({
+            username: "",
+            email: "",
+            password:"",
+            avatar: ""
+        })
+
+        console.log(e.target)
     }
 
 
@@ -42,10 +52,18 @@ function SignupForm ( {switchPage, updateUser} ){
         setSignupData({ ...signupData, [name]: value })
     }
 
+    const handleAvatar = (e) => {
+        setSignupData({ ...signupData, avatar: e.target.src })
+        const classNameList = e.target.parentNode.classList
+        classNameList.contains("selected") ?
+        classNameList.remove("selected"):
+        classNameList.add("selected")
+    }
+    
     return (
         <div className = "signup-form">
             <form onSubmit={handleSubmit}>
-                <div class = "title">
+                <div className = "title">
                     <h1> SIGNUP</h1>
                 </div>
                 <div className = "input-box">
@@ -59,7 +77,7 @@ function SignupForm ( {switchPage, updateUser} ){
                             onChange = {handleChange}/>
                     </div>
                     <div className = "input-div">
-                        <i class="fa-solid fa-envelope"></i>
+                        <i className ="fa-solid fa-envelope"></i>
                         <input
                             type = "text"
                             placeholder = 'enter your email'
@@ -69,7 +87,7 @@ function SignupForm ( {switchPage, updateUser} ){
                             />
                     </div>
                     <div className = "input-div">
-                        <i className="fa-solid fa-lock fa-lg"></i>
+                        <i className = "fa-solid fa-lock fa-lg"></i>
                         <input
                             type = "password"
                             placeholder = 'enter password'
@@ -78,8 +96,64 @@ function SignupForm ( {switchPage, updateUser} ){
                             onChange = {handleChange}
                         />
                     </div>
+                    <div className = "input-div">
+                        <div className = "img-div">
+                            <i className = "fa-solid fa-circle-user"></i>
+                        {/* <select
+                            type = "text"
+                            placeholder = 'pick your avatar'
+                            name = "avatar"
+                            // value = {avatar}
+                            onChange = {handleChange}
+                        /> */}
+                            <div className = "avatar-wrap"
+                                name = "avatar"
+                                value = {avatar}
+                                onClick = { handleAvatar }
+                            >
+
+                                <div className = "avatar-div"
+                                >
+                                    <li type = "text" value = "Bluuuu" >Bluuuu</li>
+                                    <img  className = "avatar-img" src = "https://robohash.org/LWA.png?set=set1" alt = "avatar-img"/>
+                                </div>
+                                <div className = "avatar-div" value = "Yellooow">
+                                    <li>Yellooow</li>
+                                    <img className = "avatar-img" src = "https://robohash.org/OTC.png?set=set1" alt = "avatar-img"/>
+                                </div>
+                                <div className = "avatar-div">
+                                    <li value = "Viiiolet">Viiiolet</li>
+                                    <img className = "avatar-img" src = "https://robohash.org/NPC.png?set=set1" alt = "avatar-img"/>
+                                </div>
+                                <div className = "avatar-div">
+                                    <li value = "Ooorange">Ooorange</li>
+                                    <img className = "avatar-img" src = "https://robohash.org/3JR.png?set=set1" alt = "avatar-img"/>
+                                </div>
+                                <div className = "avatar-div">
+                                    <li value = "Coooffee">Coooffee</li>
+                                    <img className = "avatar-img" src = "https://robohash.org/S15.png?set=set1" alt = "avatar-img"/>
+                                </div>
+                                <div className = "avatar-div">
+                                    <li value = "Reeeed">Reeeed</li>
+                                    <img className = "avatar-img" src = "https://robohash.org/OYT.png?set=set1" alt = "avatar-img"/>
+                                </div>
+                                <div className = "avatar-div">
+                                    <li value = "Grrrreen">Grrrreen</li>
+                                    <img className = "avatar-img" src = "https://robohash.org/LEJ.png?set=set1" alt = "avatar-img"/>
+                                </div>
+                                <div className = "avatar-div">
+                                    <li value = "Pinnnk">Pinnnk</li>
+                                    <img className = "avatar-img" src = "https://robohash.org/SQ0.png?set=set1" alt = "avatar-img"/>
+                                </div>
+                                <div className = "avatar-div">
+                                    <li value = "Whieeet">Whieeet</li>
+                                    <img className = "avatar-img" src = "https://robohash.org/YW8.png?set=set1" alt = "avatar-img"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div style={ {margin : "10px" }}>
-                        {submited ?
+                        {errors === [] || submited ?
                         <p className = 'link-btn' onClick = {switchPage}> Successed, log in here</p>
                         :
                         <p className = 'link-btn' onClick = {switchPage}> Have an account? log in</p>}

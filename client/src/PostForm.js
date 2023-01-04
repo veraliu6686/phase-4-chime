@@ -34,17 +34,15 @@ function PostForm ({postsData, setPostsData, userData}){
             setPostsData([...postsData, newPostData])
         })
 
-        // setNewPostObj({
-        //     description: "",
-        //     image_url: "",
-        //     tag: "",
-        //     user_id: ""
-        // })
-
+        setNewPostObj({
+            description: "",
+            image_url: "",
+            tag: ""
+        })
         setShowForm(!showForm)
     }
 
-    
+
     return (
         <div className = "post-form-con">
             <div>
@@ -60,6 +58,7 @@ function PostForm ({postsData, setPostsData, userData}){
                         name="image_url" type="text" value= {newPostObj.image_url} placeholder="Image Link"/>
                         <select className = "post-form-tags" onChange={(e) => setNewPostObj({...newPostObj, tag: e.target.value})}
                         name="tag" type="text" value= {newPostObj.tag} placeholder="Add a tag">
+                            <option value=""> Choose your tag </option>
                             <option value="Adventure">Adventure</option>
                             <option value="Autumn">Autumn</option>
                             <option value="Cinema">Cinema</option>
@@ -89,7 +88,7 @@ function PostForm ({postsData, setPostsData, userData}){
                             <option value="Technology">Technology</option>
                             <option value="Travel">Travel</option>
                             <option value="Winter">Winter</option>
-                            <option value="Work">Work</option>  
+                            <option value="Work">Work</option>
                         </select>
 
                         {/* <input className = "post-input"onChange={(e) => setNewPostObj({...newPostObj, tag: e.target.value})}

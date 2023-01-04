@@ -25,6 +25,8 @@ function Comment ({postId, userData}){
         })
         .then(res => res.json())
         .then( newComment => setComments([...commentsAry, newComment]))
+
+        setInput("")
     }
 
     const renderComments = commentsAry.map( comment => {
@@ -37,7 +39,7 @@ function Comment ({postId, userData}){
            <h3> Comments:</h3>
            {renderComments}
            <form id = "comment-form" onSubmit={ handleSubmit }>
-                <input type ='text' placeholder = "enter your comment" value = {input} onChange={ e => setInput(e.target.value)}/>
+                <input type ='text' placeholder = "add your comment" value = {input} onChange={ e => setInput(e.target.value)}/>
                 <button className = "lg-btn"type="submit"> + </button>
 
            </form>

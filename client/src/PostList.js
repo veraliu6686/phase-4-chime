@@ -9,7 +9,6 @@ function PostList({postsData, setPostsData, userData}){
         )
     })
 
-   
     return(
         <div>
             <PostForm setPostsData={setPostsData} postsData={postsData} userData= { userData }/>

@@ -1,20 +1,18 @@
-import {useState} from "react";
-import { Routes, Route, NavLink } from "react-router-dom"
+import {useState, useEffect} from "react";
 import Comment from "./Comment";
-// import Profile from "./Profile";
 
 function Post({postObj, userData, setPostsData}){
 
     const [showComment, setShowComment] = useState (false)
+    const [addLike, setAddLike] = useState (false)
+    const [count, setCount] = useState(postObj.like_btn)
 
     const flipPost = () => {
         setShowComment(!showComment)
     }
 
     const deletePost = id => {
-
         setPostsData(currentPost => currentPost.filter( post => post.id !== id ))
-        
     }
 
     const handleDelete = () => {
@@ -23,17 +21,26 @@ function Post({postObj, userData, setPostsData}){
         })
         .then( () => { deletePost(postObj.id)} )
     }
+
+    const handleLikes = () =>{
+            fetch(`/posts/${postObj.id}`, {
+                method: 'PATCH',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify( {like_btn: count +1 })
+            })
+            .then(res => res.json())
+            .then(newCount => {
+                setCount(newCount.like_btn)
+            })
+            console.log(count)
+        setAddLike(!addLike)
+
+    }
+
+
     return(
     <div>
-            {/* currentuser's posts */}
-            {/* <div>
-           <Routes>
-               <Route path= "/profile" element = { <Profile userData = {userData} postObj = {postObj} handleDelete = {handleDelete} /> }></Route>
-            </Routes>
-            </div> */}
-
-            {/* otherusers's posts */}
-             <div className ="flip-post-card" >
+        <div className ="flip-post-card" >
         { showComment ?
             (<div className="post-container-back">
 
@@ -51,6 +58,15 @@ function Post({postObj, userData, setPostsData}){
                     <span className="post-tag">{postObj.tag}</span>
                     <div className="post-text">
                         <p className="post-description">{postObj.description}</p>
+                        <br></br>
+                        <div onClick = {handleLikes} id = "like-btn">
+                            {addLike ?
+                            <i class="fa-solid fa-heart"></i>
+                            :
+                            <i class="fa-regular fa-heart"></i>
+                            }
+                       <p>{postObj.like_btn}</p>
+                       </div>
                     </div>
                     <div className="post-user-info">
                         <img className="user-profile-pic" src={postObj.user_data.avatar} alt="user"/>
@@ -66,7 +82,7 @@ function Post({postObj, userData, setPostsData}){
         }
         </div>
     </div>
-   
+
     )
 
 }

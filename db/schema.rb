@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2022_12_22_205133) do
     t.string "image_url"
     t.string "description"
     t.string "tag"
+    t.integer "like_btn"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

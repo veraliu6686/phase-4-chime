@@ -19,18 +19,23 @@ class PostsController < ApplicationController
         new_post = Post.create!(post_params)
         render json: new_post, status: :created
     end
-    
-    def destroy   
+
+    def update
+        updated_post_likes = Post.find(params[:id])
+        updated_post_likes.update(post_params)
+        render json: updated_post_likes
+    end
+
+    def destroy
         Post.find(params[:id]).destroy
         head :no_content
     end
 
     private
     def post_params
-        params.permit(:description, :image_url, :tag, :user_id)
+        params.permit(:description, :image_url, :tag, :user_id, :like_btn)
     end
 end
 
 
-            
-                                            # 
+
