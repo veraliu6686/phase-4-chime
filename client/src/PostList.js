@@ -4,12 +4,14 @@ import { useState, useEffect } from "react"
 
 function PostList({postsData, setPostsData, userData}){
     const [loading, setLoading] = useState(true)
+    // Map for rendering the posts + sending props to Post component
     const renderPosts = postsData.map(postObj => {
         return (
                 <Post key={postObj.id} postObj={postObj} userData={userData} setPostsData = {setPostsData}/>
         )
     })
 
+    // Same function as the Home component 
     useEffect(() => {
         const loadData = async () => {
 
@@ -23,9 +25,14 @@ function PostList({postsData, setPostsData, userData}){
       }, [])
 
       if (loading) {
-          return <div className = "loading-message">Loading....</div>
+        return (
+            <div >
+                <div className = "text-wrap">Chiming....</div>
+            </div>
+      )
       }
 
+      // Returning the post list and sending props to post form
     return(
         <div>
             <PostForm setPostsData={setPostsData} postsData={postsData} userData= { userData }/>

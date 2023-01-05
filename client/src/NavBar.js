@@ -34,11 +34,9 @@ function NavBar( {updateUser}){
                     <button className="nav-btns">Profile</button>
                 </NavLink>
                 <NavLink to="/posts">
-                {/* <FontAwesomeIcon icon="fa-solid fa-right-from-bracket" /> */}
                   <button className = "nav-btns">Posts</button>
                 </NavLink>
                 <i className = "fa-solid fa-right-from-bracket" style = {{marginRight : "60px" , padding : "15px", cursor: "pointer"}}  onClick = {handleLogOut}></i>
-                {/* <button className = "nav-btns" onClick = {handleLogOut}>Log Out</button> */}
            </div>
         </div>
     </div>

@@ -1,9 +1,11 @@
 import { useState } from "react"
 
 function CommentItem( {comment, setComments, userData}){
-    const [ renderEdit, setEdit] = useState( false)
-    const [ updateContent, setUpdateComment ] = useState ("")
+    // Initializing state variables 
+    const [ renderEdit, setEdit] = useState( false) 
+    const [ updateContent, setUpdateComment ] = useState ("") // stores patch to update comment
 
+    // update a comment if the comment id matches
     const updateComment = (updatedComment) => {
         setComments(current => {
             return current.map(comment => {
@@ -27,7 +29,8 @@ function CommentItem( {comment, setComments, userData}){
 
         setEdit(!renderEdit)
     }
-
+    
+    // delete a comment if the comment id matches
     const deleteComment = id => {
 
         setComments(current => current.filter( comment => comment.id !== id ))
@@ -44,6 +47,7 @@ function CommentItem( {comment, setComments, userData}){
     return (
         <div className="comment-list">
             <div className= "btn-div">
+                {/* only user can edit/delete the comment they posted */}
                 {
                 comment.user.id === userData.id? (
                     <div>

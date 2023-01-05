@@ -16,7 +16,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   display: flex ;
   justify-content: center;
-  /* background: linear-gradient( to top left, #DB3945, #626AE3 ); */
   background: #ccc;
 }
 
@@ -29,41 +28,9 @@ input {
   outline: none;
 }
 
-/* #bg-con{
-width: 100vw;
-height: 100vh;
-} */
-
-/* .bg-squares{
-  list-style: none;
-  position: absolute;
-  top:0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-}
-.bg-squares li{
-  width: 40px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.15);
-  position: absolute;
-  bottom : -160px;
-  animation: squares 2s linear infinite ;
-}
-
-@keyframes squares {
-  0%{
-    transform: translateY(0);
-  }
-  100%{
-    transform: translateY(-120%) rotate(600deg)
-  }
-} */
 .container{
   width: 900px;
   height: 500px;
-  /* background-color: #ACA9BB; */
   background:#DB3945;
   margin: auto;
   border-radius: 15px;
@@ -111,8 +78,8 @@ height: 100vh;
 .login-img{
   display: flex;
   justify-content: center;
-  /* object-fit: cover; */
 }
+
 .login-img img{
   max-width: 200px;
   max-height: 200px;
@@ -134,9 +101,12 @@ height: 100vh;
   height: 160px;
   line-height: 180px;
 }
+
 .title h1{
   text-align: center;
   letter-spacing: 5px;
+  text-shadow: #626AE3 4px 0 3px;
+  font-size: 36px;
   color: white;
 }
 
@@ -153,7 +123,6 @@ height: 100vh;
 }
 
 input{
-  /* width: 60%; */
   height: 30px;
   margin-bottom: 12px;
   border-radius: 5px;
@@ -189,6 +158,7 @@ button{
   font-size: 18px;
   margin-top: 5PX;
 }
+
 button:hover{
   cursor: pointer
 }
@@ -242,9 +212,6 @@ button:hover{
   justify-content: center;
 }
 .avatar-div:hover{
-  /* border-bottom: #000 2px dashed;
-  box-shadow: 0 2px rgba(0, 0, 0, 0.2); */
-  /* width: 80%; */
   text-decoration: line-through;
   cursor: pointer;
   color: #DB3945;
@@ -257,7 +224,6 @@ button:hover{
   color: #DB3945;
   text-shadow: 1px 1px #DB3945 ;
 }
-
 li{
   list-style: none;
   color: #626AE3;
@@ -287,10 +253,11 @@ li{
   z-index: 30;
 }
 .welcome-user{
-  color: #626AE3;
+  color: #000;
   font-size: 30px;
   text-transform: uppercase;
   text-align: center;
+  z-index: 30;
 }
 
 .welcome-avatar{
@@ -301,7 +268,7 @@ position: absolute;
 top: 50%;
 left: 50%;
 transform: translate(-50%, 30%);
-width: 800px;
+width: 700px;
 height: 240px;
 padding: 0 40px;
 overflow: hidden;
@@ -315,33 +282,43 @@ z-index: -100;
   text-align: center;
 }
 .text-line{
-  color: #626AE3;
+  color: #000;
   line-height: 30px;
-  animation: roll 18s infinite;
+  animation: roll 15s linear infinite;
 }
 
 @keyframes roll{
   0%{
-    transform: translateX(0);
+    transform: translateX(100%);
   }
   50%{
-  transform: translateX(calc(1000px - 100%));
+    transform: translateX(0);
   }
   100%{
-    transform: translateX(0);
+  transform: translateX( -100%);
   }
 }
 .profile-con{
   margin-top :130px;
 }
-/* .flip-post-card {
-  background-color: transparent;
-  width: 300px;
-  height: 200px;
-  border: 1px solid #f1f1f1;
-  perspective: 1000px;
-} */
-
+a{
+	text-decoration: none;
+	font-style: none;
+}
+#post-link{
+	margin-top: 80px;
+	margin-bottom: 50px;
+	text-align: center;
+	position: relative;
+	color: #fff;
+	font-size: 24px;
+	font-weight: 500;
+}
+#post-link:hover{
+	color: #626AE3;
+	font-size: 36px;
+	font-weight: 700;
+}
 .post-list{
   display: grid;
   grid-template-columns: repeat(3, auto);
@@ -426,7 +403,6 @@ img{
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-  /* justify-content: center; */
  }
 
  .post-header img{
@@ -475,7 +451,6 @@ img{
   width: 40px;
   height: 40px;
   margin-right: 10px;
-
 }
 
 .post-container-back{
@@ -511,6 +486,7 @@ img{
   color: #fff;
   cursor: pointer;
 }
+
 .post-button-div .post-container-front .btns{
   display: flex;
   justify-content: center;
@@ -577,15 +553,13 @@ img{
   text-shadow: 0 1px 4px rgb(146, 161, 176, 0.2);;
   border: #474554 1px dashed;
 }
+.fa-right-from-bracket:hover{
+	color: #DB3945
+}
 
 .logo{
   margin-left: 50px;
 }
-/* .navbar-div {
-  display: block;
-  position: relative;
-  height: 60px;
-} */
 
 /* CSS FOR NAVBAR  */
 
@@ -620,8 +594,7 @@ img{
   width: 30%;
   text-align: center;
   float: right;
-  background-color: #DB3945;
-  border : 2px solid purple;
+  background-color: #DB3945;;
 }
 
 textarea {
@@ -652,19 +625,58 @@ textarea {
 .user-name{
   color: #444;
 }
+
+.text-wrap{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top:  200px;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	color:#DB3945;
+	font-size: 72px;
+	font-weight: 900;
+}
 .loading-message{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top:  200px;
-  color:#DB3945;
-  font-size: 5rem;
-  font-weight: 900;
+	position: relative;
+}
+.loading-message::before, .loading-message::after{
+	content : '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 }
 
+.loading-message::before{
+	background-color: #ccc;
+	animation: typing 2.8s steps(18) forwards;
+}
+.loading-message::after{
+	width: 2px;
+	background-color: #fff;
+	animation: typing 2.8s steps(18) forwards,
+	blink 500ms steps(18) infinite; 
+}
 
+@keyframes typing{
+	to{
+		left: 100%;
+	}
+}
 
-/* TESTING FOR WELCOME PAGE BACKGROUND */
+@keyframes blink{
+	from, to{
+		background: transparent;
+	}
+	50%{
+		background: white 
+	}
+}
+
+/* WELCOME PAGE BACKGROUND ANIMATION*/
 .section-center{
 	position: relative;
 	width: 700px;
@@ -711,7 +723,7 @@ textarea {
 	position: absolute;
 	width: 60px;
 	height: 60px;
-	background-color: #fff;
+	background-color: #ccc;
 	left: 4px;
 	top: 0;
 	display: block;
@@ -841,7 +853,7 @@ textarea {
 	top: 0;
 	border-radius: 50%;
 	border: 2px solid #030308;
-	background-color: #fff;
+	background-color: #ccc;
 }
 .left-tree span:nth-child(2){
 	width: 2px;
@@ -895,7 +907,7 @@ textarea {
 	top: 2px;
 	border-radius: 50%;
 	border: 2px solid #030308;
-	background-color: #fff;
+	background-color: #ccc;
 }
 .right-tree span:nth-child(2){
 	width: 2px;
@@ -937,7 +949,7 @@ textarea {
 	top: -6px;
 	border-radius: 50%;
 	border: 2px solid #030308;
-	background-color: #fff;
+	background-color: #ccc;
 	border-bottom-color:transparent;
 }
 .building-left{
@@ -952,7 +964,7 @@ textarea {
 	left: 0;
 	bottom: 0;
 	border: 2px solid #030308;
-	background-color: #fff;
+	background-color: #ccc;
 	width: 17px;
 	height: 42px;
 }
@@ -1038,7 +1050,7 @@ textarea {
 	right: 18px;
 	bottom: 0;
 	border: 2px solid #030308;
-	background-color: #fff;
+	background-color: #ccc;
 	width: 86px;
 	height: 24px;
 }
@@ -1101,7 +1113,7 @@ textarea {
 	background-color: transparent;
 	width: 0;
 	height: 0;
-    border-bottom: 5px solid #fff;
+    border-bottom: 5px solid #ccc;
     border-left: 0 solid transparent;
     border-right: 8px solid transparent;
 	transform: skewY(-15deg); 
@@ -1290,7 +1302,7 @@ textarea {
 	top: 0;
 	border-radius: 50%;
 	border: 2px solid #030308;
-	background-color: #fff;
+	background-color: #ccc;
 	width: 37px;
 	height: 37px;
 	animation: sunShine 3.5s linear infinite;
@@ -1322,7 +1334,7 @@ textarea {
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
-	background-color: #fff;
+	background-color: #ccc;
 	border: 2px solid #030308;
 	border-color: #030308 #030308 #030308 transparent;
 }
@@ -1378,7 +1390,7 @@ textarea {
 	width: 28px;
 	height: 28px;
 	border-radius: 50%;
-	background-color: #fff;
+	background-color: #ccc;
 	border: 2px solid #030308;
 	border-color: #030308 #030308 #030308 transparent;
 }
@@ -1423,7 +1435,7 @@ textarea {
 	width: 16px;
 	height: 16px;
 	border-radius: 50%;
-	background-color: #fff;
+	background-color: #ccc;
 	border: 2px solid #030308;
 	border-color: #030308 #030308 #030308 transparent;
 }
@@ -1705,7 +1717,7 @@ textarea {
 	top: 0;
 	height: 36px;
 	width: 36px;
-	background-color: #fff;
+	background-color: #ccc;
 	border: 4px solid #030308;
 	border-top-left-radius: 60%;
 	border-bottom-right-radius: 60%;
@@ -2211,7 +2223,7 @@ textarea {
 	border: 3px solid #030308;
 	border-bottom-right-radius: 40px;
 	border-bottom-left-radius: 20px;
-	background-color: #fff;
+	background-color: #ccc;
 	z-index: 1;
 }
 .ship span:nth-child(2){
@@ -2245,7 +2257,7 @@ textarea {
 	border: none;
 	border-radius: 0;
 	background-color: transparent;
-    border-bottom: 62px solid #fff;
+    border-bottom: 62px solid #ccc;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
 	transform: rotate(-17.5deg) scale(0.85);
@@ -2273,7 +2285,7 @@ textarea {
 	border: none;
 	border-radius: 0;
 	background-color: transparent;
-    border-bottom: 48px solid #fff;
+    border-bottom: 48px solid #ccc;
     border-left: 31px solid transparent;
     border-right: 0 solid transparent;
 	border-bottom-left-radius: 3px;
@@ -2281,4 +2293,4 @@ textarea {
 	z-index: 2;
 }
 
-/* TESTING FOR WELCOME PAGE BACKGROUND */
+/* WELCOME PAGE BACKGROUND */

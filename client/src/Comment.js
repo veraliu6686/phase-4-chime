@@ -4,13 +4,14 @@
 function Comment ({postId, userData}){
     const [ commentsAry, setComments ] = useState ( [] )
     const [ input, setInput ] = useState ( "" )
-
+    // render comment based on the post user clicked on
     useEffect( () =>{
     fetch (`/postcomments/${postId}`)
     .then ( r => r.json() )
     .then ( setComments )
     },[postId])
 
+    // add comment to the selected post 
     const handleSubmit = e => {
         e.preventDefault();
         const newComment = {
@@ -28,12 +29,12 @@ function Comment ({postId, userData}){
 
         setInput("")
     }
-
+    // render the comments related to the post from the database
     const renderComments = commentsAry.map( comment => {
         return <CommentItem key = {comment.id} comment = {comment} setComments= {setComments} setInput = {setInput} userData = {userData}/>
     })
 
-
+    // returns comments
     return(
         <div id= "comment-con">
            <h3> Comments:</h3>
@@ -41,7 +42,6 @@ function Comment ({postId, userData}){
            <form id = "comment-form" onSubmit={ handleSubmit }>
                 <input type ='text' placeholder = "add your comment" value = {input} onChange={ e => setInput(e.target.value)}/>
                 <button className = "lg-btn"type="submit"> + </button>
-
            </form>
         </div>
     )

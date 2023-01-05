@@ -3,13 +3,15 @@ import { useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function LoginPage ( {switchPage, updateUser}){
-    const [loginData, setLoginData] = useState({
+    const [loginData, setLoginData] = useState({// for storing login form data
         username:"",
         password:""
     })
-    let navigate = useNavigate()
-    const [errors, setErrors] = useState([])
-    const {username, password} = loginData
+    let navigate = useNavigate() // for navigating to a different route when login is triggered
+
+    // Initializing state variables
+    const [errors, setErrors] = useState([]) // for storing errors data 
+    const {username, password} = loginData // for storing user's entered username and password in loginData
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -17,7 +19,8 @@ function LoginPage ( {switchPage, updateUser}){
             username,
             password
         }
-    //    console.log(user)
+
+         // Sending a POST request to the server with the user data
         fetch('/login',{
           method:'POST',
           headers:{'Content-Type': 'application/json'},
@@ -26,20 +29,21 @@ function LoginPage ( {switchPage, updateUser}){
         .then(res => {
             if(res.ok){
                 res.json().then(user => {
-                updateUser(user)
-                navigate('/welcome')
+                updateUser(user) // updating user from App component
+                navigate('/welcome') // navigating to the welcome route
             })
             } else{
-                res.json().then(json => setErrors(json.errors))
+                res.json().then(json => setErrors(json.errors)) // for storing login form errors
             }
         })
     }
 
     const handleChange = (e) => {
         const { name, value } = e.target
-        setLoginData({ ...loginData, [name]: value })
+        setLoginData({ ...loginData, [name]: value }) // Updating login data in state
     }
 
+    // Login form
     return (
         <div className = "login-form">
         <form onSubmit={handleSubmit}>
@@ -67,13 +71,14 @@ function LoginPage ( {switchPage, updateUser}){
                     />
                 </div>
                 <div style={ {margin : "10px" }}>
-                    <p className = 'link-btn' onClick = {switchPage}> create an account</p>
+                    <p className = 'link-btn' onClick = {switchPage}> Create An Account</p>
                 </div>
             </div>
             <div className = "btn-box">
                 <button type="submit"> Login</button>
             </div>
         </form>
+        {/* error massage */}
         {errors? <div className = "error-message">{errors}</div>: null}
     </div>
     )

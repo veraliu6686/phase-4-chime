@@ -4,19 +4,21 @@ import { useState, useEffect } from "react"
 
 
 function Home({updateUser}){
+    // Initializing state variables
+    const [slide, setSlide] = useState (false) // for switching between login and signup forms
+    const [loading, setLoading] = useState(true)  // for loading animation
 
-    const [slide, setSlide] = useState (false)
-    const [loading, setLoading] = useState(true)
-
+    // Function for switching between login and signup forms
     const switchPage = () => {
         setSlide(!slide)
     }
 
+    // Loading data asynchronously and setting loading state to false
     useEffect(() => {
         const loadData = async () => {
 
 
-          await new Promise((r) => setTimeout(r, 2000));
+          await new Promise((r) => setTimeout(r, 2000));  // adding a delay for loading animation
 
           setLoading((loading) => !loading);
         };
@@ -24,18 +26,24 @@ function Home({updateUser}){
         loadData();
       }, [])
 
+      // Rendering loading message if data is being fetched
       if (loading) {
-          return <div className = "loading-message">Loading....</div>
+          return (
+                <div>
+                    <div className = "text-wrap">Chiming....</div>
+                </div>
+          )
       }
 
+      // Rendering homepage if data is finished loading
       else {
           return (
             <div id = "bg-con">
-               {/* <h1> HOME </h1> */}
                 <div className = "container" >
                 <div className = { slide ? "wrapper-slide" : "wrapper" }>
+                    {/* sliding between login and signup forms */}
                    {slide ?
-                    <h1>Have fun!</h1> : <h1> Hello My Friend!</h1>  }
+                    <h1>Have fun!</h1> : <h1> Welcome to Chime!</h1>  }
                     <div className = "login-img">
                         <img src= "https://media2.giphy.com/media/9JrkkDoJuU0FbdbUZU/giphy.gif?cid=ecf05e47lc9vpaf4dss497mwytvz7vta0rhc9y8rj5mkdwnh&rid=giphy.gif&ct=g" alt = "login"/>
                     </div>

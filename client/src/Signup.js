@@ -2,16 +2,18 @@ import React from 'react';
 import { useState } from 'react'
 
 function SignupForm ( {switchPage, updateUser} ){
-    const [submited, setSubmited] = useState (false)
-    const [signupData, setSignupData] = useState({
+    // Initializing state variables
+    const [submited, setSubmited] = useState (false) // for switching between signup form and success message
+    const [signupData, setSignupData] = useState({ // for storing form data
         username: "",
         email: "",
         password:"",
         avatar: ""
     })
-    const [errors, setErrors] = useState([])
+    const [errors, setErrors] = useState([]) // for storing form errors
     const {username, email, password, avatar} = signupData
 
+    // Function for handling form submission
     const handleSubmit = (e) => {
         e.preventDefault()
         const user = {
@@ -20,6 +22,7 @@ function SignupForm ( {switchPage, updateUser} ){
             password,
             avatar
         }
+        // Sending a POST request to the server with the user data
         fetch('/users',{
             method:'POST',
             headers:{'Content-Type': 'application/json'},
@@ -31,10 +34,10 @@ function SignupForm ( {switchPage, updateUser} ){
                     updateUser(user)
                 })
             }else{
-                res.json().then(json => setErrors(Object.entries(json.errors)))
+                res.json().then(json => setErrors(Object.entries(json.errors))) // for storing signup form errors
             }
         })
-        setSubmited(!submited)
+        setSubmited(!submited) // Switching to success message
 
         setSignupData({
             username: "",
@@ -42,24 +45,23 @@ function SignupForm ( {switchPage, updateUser} ){
             password:"",
             avatar: ""
         })
-
-        console.log(e.target)
     }
 
-
+    // Function for handling form input changes
     const handleChange = (e) => {
         const { name, value } = e.target
         setSignupData({ ...signupData, [name]: value })
     }
 
     const handleAvatar = (e) => {
-        setSignupData({ ...signupData, avatar: e.target.src })
+        setSignupData({ ...signupData, avatar: e.target.src }) // Setting avatar in form data
         const classNameList = e.target.parentNode.classList
         classNameList.contains("selected") ?
         classNameList.remove("selected"):
         classNameList.add("selected")
     }
-    
+
+     // Signup form
     return (
         <div className = "signup-form">
             <form onSubmit={handleSubmit}>
@@ -99,22 +101,15 @@ function SignupForm ( {switchPage, updateUser} ){
                     <div className = "input-div">
                         <div className = "img-div">
                             <i className = "fa-solid fa-circle-user"></i>
-                        {/* <select
-                            type = "text"
-                            placeholder = 'pick your avatar'
-                            name = "avatar"
-                            // value = {avatar}
-                            onChange = {handleChange}
-                        /> */}
                             <div className = "avatar-wrap"
                                 name = "avatar"
                                 value = {avatar}
                                 onClick = { handleAvatar }
                             >
-
+                                {/* custom avatar by clicking on the image */}
                                 <div className = "avatar-div"
                                 >
-                                    <li type = "text" value = "Bluuuu" >Bluuuu</li>
+                                    <li type = "text" value = "Bluuuu" >Bluuuue</li>
                                     <img  className = "avatar-img" src = "https://robohash.org/LWA.png?set=set1" alt = "avatar-img"/>
                                 </div>
                                 <div className = "avatar-div" value = "Yellooow">
@@ -146,17 +141,17 @@ function SignupForm ( {switchPage, updateUser} ){
                                     <img className = "avatar-img" src = "https://robohash.org/SQ0.png?set=set1" alt = "avatar-img"/>
                                 </div>
                                 <div className = "avatar-div">
-                                    <li value = "Whieeet">Whieeet</li>
+                                    <li value = "Whieeet">Whiteeee</li>
                                     <img className = "avatar-img" src = "https://robohash.org/YW8.png?set=set1" alt = "avatar-img"/>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div style={ {margin : "10px" }}>
-                        {errors === [] || submited ?
-                        <p className = 'link-btn' onClick = {switchPage}> Successed, log in here</p>
+                        { submited ?
+                        <p className = 'link-btn' onClick = {switchPage}> Successed, Log in here</p>
                         :
-                        <p className = 'link-btn' onClick = {switchPage}> Have an account? log in</p>}
+                        <p className = 'link-btn' onClick = {switchPage}> Have an account? Log in</p>}
                     </div>
 
                 </div>
@@ -164,6 +159,7 @@ function SignupForm ( {switchPage, updateUser} ){
                     <button type = "submit">Sign Up</button>
                 </div>
             </form>
+            {/* error massage */}
             {errors?errors.map(e => <div className = "error-message">{e[0]+': ' + e[1]}</div>) : null}
         </div>
     )

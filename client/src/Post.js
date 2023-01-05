@@ -2,16 +2,18 @@ import {useState} from "react";
 import Comment from "./Comment";
 
 function Post({postObj, userData, setPostsData}){
-
-    const [showComment, setShowComment] = useState (false)
-    const [addLike, setAddLike] = useState (false)
-    const [addDislike, setDislike] = useState (false)
+    // Initializing state variales
+    const [showComment, setShowComment] = useState (false) // to store comments in back of card
+    const [addLike, setAddLike] = useState (false) // to track like button
+    const [addDislike, setDislike] = useState (false) // track dislike button
     const [count, setCount] = useState(postObj.like_btn)
 
+    // Function to toggle showComment state
     const flipPost = () => {
         setShowComment(!showComment)
     }
 
+    // Function to delete post 
     const deletePost = id => {
         setPostsData(currentPost => currentPost.filter( post => post.id !== id ))
     }
@@ -24,6 +26,7 @@ function Post({postObj, userData, setPostsData}){
         .then( () => { deletePost(postObj.id)} )
         }}
 
+     // Function to handle updating the like count for a post
     const handleLikes = () =>{
             fetch(`/posts/${postObj.id}`, {
                 method: 'PATCH',
@@ -39,7 +42,7 @@ function Post({postObj, userData, setPostsData}){
             console.log(count)
         setAddLike(!addLike)
     }
-
+    // function to handle dislike button for a post
     const handleDislike = () =>{
         setDislike(!addDislike)
     }
@@ -49,13 +52,15 @@ function Post({postObj, userData, setPostsData}){
         <div className ="flip-post-card" >
         { showComment ?
             (<div className="post-container-back">
-
+                {/* Display comments when showComment is true */}
                     <div className="post-comments">
                     <Comment postId ={postObj.id} userData = {userData}/>
                     </div>
+                {/* Link to go back to post when showComment is true */}
                     <p className="post-direction" onClick = {flipPost}> ---back to the post---</p>
             </div>)
             :
+             // if showComment is false, display the front of the post card
             (<div className="post-container-front" >
                 <div className="post-card">
                     <div className="post-header">
@@ -73,6 +78,7 @@ function Post({postObj, userData, setPostsData}){
                     <div className = "post-button-div">
                     <div className = "btns">
                             <div onClick = {handleLikes} className = "btn-child">
+                                {/* for different like button icon + number increments or decrements when clicked */}
                                 {addLike ?
                                 <i className="fa-solid fa-heart"></i>
                                 :
@@ -81,8 +87,8 @@ function Post({postObj, userData, setPostsData}){
                                 <p>{postObj.like_btn}</p>
                             </div>
                             <div onClick = {handleDislike} >
+                                {/* for different dislike button when clicked */}
                                 {addDislike ?
-                                // <i class="fa-solid fa-heart-crack"></i>
                                 <i className ="fa-solid fa-thumbs-down"></i>
                                 :
                                 <i className="fa-regular fa-thumbs-down"></i>

@@ -1,24 +1,25 @@
 import React from "react";
 import { useState, useEffect } from "react"
-// import ReactLoading from "react-loading";
+
 
 function Welcome({userData, postsData}){
   const [loading, setLoading] = useState(true)
 
+  // Mapping over Posts data to show each post with sliding css animations
   const posts = postsData.map( post => {
-    // console.log(post.description)
     return (
-      <div className = "text-line">
-        <p>{post.description} </p>
+      <div className="text-line">
+        <p key={post.id} > {post.description} </p>
       </div>
     )
   }) 
 
+  // Same function and state as in the Home component
   useEffect(() => {
     const loadData = async () => {
 
-      // Wait for two second
-      await new Promise((r) => setTimeout(r, 2000));
+      // Wait for three second
+      await new Promise((r) => setTimeout(r, 3000));
 
       setLoading((loading) => !loading);
     };
@@ -27,10 +28,16 @@ function Welcome({userData, postsData}){
   }, [])
 
   if (loading) {
-      return <div className="loading-message">Loading....</div>
-  }
-
+      return(
+		<div className = "text-wrap">
+		   <div className="loading-message">Chiming....</div>
+		</div>
+	  )
+		  
+		}
+    
   else {
+    // Returns welcome message page with user's username, avatar, and custom background
     return (
       <>
       <div id = "welcome-con">
@@ -47,7 +54,8 @@ function Welcome({userData, postsData}){
           </div>
         </div>
       </div>
-
+      
+      {/* CSS background animation */}
     <div className="section-center">
 		<div className="section-up">
 			<div className="sun">
@@ -407,20 +415,6 @@ function Welcome({userData, postsData}){
       </>
     )
   }
-    // return(
-    //     <div id = "welcome-con">
-    //   <h2 className = "welcome-title">Welcome Back to Chime</h2>
-
-    // <div  className = "welcome-info">
-    // <div>
-    //     <div>
-    //       <img  className = "welcome-avatar" src = {userData.avatar} alt = {userData.username}/>
-    //     </div>
-    //   </div>
-    //   <h3 className = "welcome-user"> {userData.username}</h3>
-    // </div>
-    // </div>
-    // )
 }
 
 export default Welcome

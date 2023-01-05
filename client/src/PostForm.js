@@ -1,20 +1,17 @@
 import React from 'react';
 import { useState } from 'react'
 
-// test
 function PostForm ({postsData, setPostsData, userData}){
 
-    const [showForm, setShowForm] = useState (false)
-    // console.log(postsData)
-    const [newPostObj, setNewPostObj] = useState (
+    const [showForm, setShowForm] = useState (false) // track toggle to hide form
+    const [newPostObj, setNewPostObj] = useState ( // stores post obj for form
         {
             description: "",
             image_url: "",
             tag: ""
         }
     )
-    // console.log(newPostObj, userData.id)
-
+    // function that sends a POST request to the server when form is submitted
     function handleSubmit(e){
         e.preventDefault();
 
@@ -42,14 +39,15 @@ function PostForm ({postsData, setPostsData, userData}){
         setShowForm(!showForm)
     }
 
-
+    //  allow user to add a post to the page w/ a select tag
     return (
         <div className = "post-form-con">
             <div>
-                <h3 onClick = {() => setShowForm(!showForm)}>Click to Create A New Post </h3>
+                <h3 onClick = {() => setShowForm(!showForm)}>Click to Create A New Post </h3> {/*If clicked show form*/}
             </div>
             {
                 showForm ?
+                {/*If form appears, show everything the form has*/}
                 (<div className = "post-form">
                     <form onSubmit={handleSubmit}>
                         <input className = "post-input" onChange={(e) => setNewPostObj({...newPostObj, description: e.target.value})}
@@ -90,9 +88,6 @@ function PostForm ({postsData, setPostsData, userData}){
                             <option value="Winter">Winter</option>
                             <option value="Work">Work</option>
                         </select>
-
-                        {/* <input className = "post-input"onChange={(e) => setNewPostObj({...newPostObj, tag: e.target.value})}
-                        name="tag" type="text" value= {newPostObj.tag} placeholder="Add a tag"/> */}
                         <div className="post-form-button">
                             <button className = "lg-btn" type="submit">New Post</button>
                         </div>

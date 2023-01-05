@@ -8,12 +8,16 @@ import Profile from "./Profile";
 
 
 function App() {
-  const [ postsData, setPostsData ] = useState([])
-  const [currentUser, setCurrentUser] = useState(false)
-  const [errors, setErrors] = useState(false)
-  const [ userData, setUserData ] = useState( [] )
+   // Initializing state variables
+  const [ postsData, setPostsData ] = useState([]) // for storing posts data
+  const [currentUser, setCurrentUser] = useState(false) // for storing current user data
+  const [errors, setErrors] = useState(false) // for storing errors
+  const [ userData, setUserData ] = useState( [] )// for storing all users data
+
+  // Function for updating current user
   const updateUser = (user) => setCurrentUser(user)
 
+  // Fetching authorized user data
   useEffect(() => {
     fetch("/authorized_user")
     .then((res) => {
@@ -27,6 +31,7 @@ function App() {
     })
   },[userData.id])
 
+  // Fetching posts data
   const fetchPost =() =>{
     fetch("/posts")
     .then(res => {
@@ -45,17 +50,18 @@ function App() {
     .then (setUserData)
   },[currentUser])
 
+  // Rendering errors if they are present
   if(errors) return <h1>{errors}</h1>
 
   return (
     <>
       {userData.id ? <NavBar updateUser = {updateUser}/> : null}
+      {/* http paths */}
       <Routes>
-        <Route path= "/" element= {<Home updateUser = {updateUser} />}> </Route>
+        <Route exact path= "/" element= {<Home updateUser = {updateUser} />}> </Route>
         <Route path= "/welcome" element= {<Welcome userData= {userData} postsData={postsData}/>}> </Route>
         <Route path= "/posts" element= {<PostList setPostsData= {setPostsData} postsData={postsData} userData= {userData} />}> </Route>
         <Route path= "/profile" element = {<Profile userData = {userData} postsData = {postsData} />}></Route>
-        {/* <Route path= "/posts" element= {<PostList allUserData = {allUserData} setPostsData= {setPostsData} postsData={postsData} userData= { userData }/>}> </Route> */}
       </Routes>
     </>
   );
