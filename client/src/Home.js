@@ -25,7 +25,7 @@ function Home({updateUser}){
       }, [])
 
       if (loading) {
-          return <div clasName = "loading-message">Loading....</div>
+          return <div className = "loading-message">Loading....</div>
       }
 
       else {

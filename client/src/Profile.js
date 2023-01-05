@@ -1,8 +1,9 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
+import { useState, useEffect } from "react"
 
 function Profile({userData, postsData}){
-
+    const [loading, setLoading] = useState(true)
     const userPost = postsData.map((post) => {
         if (post.user_id === userData.id){
             return (
@@ -39,6 +40,22 @@ function Profile({userData, postsData}){
             </NavLink>
         }
     })
+
+    useEffect(() => {
+        const loadData = async () => {
+    
+          // Wait for two second
+          await new Promise((r) => setTimeout(r, 1000));
+    
+          setLoading((loading) => !loading);
+        };
+    
+        loadData();
+      }, [])
+    
+      if (loading) {
+          return <div className="loading-message">Loading....</div>
+      }
 
     return(
         <div className = "profile-con">

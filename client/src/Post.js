@@ -1,10 +1,11 @@
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import Comment from "./Comment";
 
 function Post({postObj, userData, setPostsData}){
 
     const [showComment, setShowComment] = useState (false)
     const [addLike, setAddLike] = useState (false)
+    const [addDislike, setDislike] = useState (false)
     const [count, setCount] = useState(postObj.like_btn)
 
     const flipPost = () => {
@@ -16,17 +17,20 @@ function Post({postObj, userData, setPostsData}){
     }
 
     const handleDelete = () => {
+        if (window.confirm("Are you sure you want to delete this post?")){
         fetch(`/posts/${postObj.id}`, {
             method: 'DELETE'
         })
         .then( () => { deletePost(postObj.id)} )
-    }
+        }}
 
     const handleLikes = () =>{
             fetch(`/posts/${postObj.id}`, {
                 method: 'PATCH',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify( {like_btn: count +1 })
+                body: JSON.stringify({
+                    like_btn: addLike ? --postObj.like_btn : ++postObj.like_btn
+                    })
             })
             .then(res => res.json())
             .then(newCount => {
@@ -34,9 +38,11 @@ function Post({postObj, userData, setPostsData}){
             })
             console.log(count)
         setAddLike(!addLike)
-
     }
 
+    const handleDislike = () =>{
+        setDislike(!addDislike)
+    }
 
     return(
     <div>
@@ -58,24 +64,33 @@ function Post({postObj, userData, setPostsData}){
                     <span className="post-tag">{postObj.tag}</span>
                     <div className="post-text">
                         <p className="post-description">{postObj.description}</p>
-                        <br></br>
-                        <div onClick = {handleLikes} id = "like-btn">
-                            {addLike ?
-                            <i class="fa-solid fa-heart"></i>
-                            :
-                            <i class="fa-regular fa-heart"></i>
-                            }
-                       <p>{postObj.like_btn}</p>
-                       </div>
+                        <br></br>        
                     </div>
                     <div className="post-user-info">
                         <img className="user-profile-pic" src={postObj.user_data.avatar} alt="user"/>
                         <p className="post-username">{postObj.user_data.username}</p>
                     </div>
-                    <div className = "post-delete-button-div">
-                        { postObj.user_id === userData.id ? (
-                        <button onClick = {handleDelete} className = "post-delete-button">Delete</button>)
-                        : <></>}
+                    <div className = "post-button-div">
+                    <div className = "btns">
+                            <div onClick = {handleLikes} className = "btn-child">
+                                {addLike ?
+                                <i className="fa-solid fa-heart"></i>
+                                :
+                                <i className="fa-regular fa-heart"></i>
+                                }
+                                <p>{postObj.like_btn}</p>
+                            </div>
+                            <div onClick = {handleDislike} >
+                                {addDislike ?
+                                // <i class="fa-solid fa-heart-crack"></i>
+                                <i className ="fa-solid fa-thumbs-down"></i>
+                                :
+                                <i className="fa-regular fa-thumbs-down"></i>
+                                }
+                            </div>
+                            <i className="fa-solid fa-comment-dots btn-child" onClick = {flipPost}></i>
+                            { postObj.user_id === userData.id ? <i class="fa-solid fa-trash-can btn-child" onClick = {handleDelete}></i> : <></>}
+                        </div>
                     </div>
                 </div>
             </div> )

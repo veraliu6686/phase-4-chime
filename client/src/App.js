@@ -52,8 +52,8 @@ function App() {
       {userData.id ? <NavBar updateUser = {updateUser}/> : null}
       <Routes>
         <Route path= "/" element= {<Home updateUser = {updateUser} />}> </Route>
-        <Route path= "/welcome" element= {<Welcome userData= { userData }/>}> </Route>
-        <Route path= "/posts" element= {<PostList setPostsData= {setPostsData} postsData={postsData} userData= { userData } />}> </Route>
+        <Route path= "/welcome" element= {<Welcome userData= {userData} postsData={postsData}/>}> </Route>
+        <Route path= "/posts" element= {<PostList setPostsData= {setPostsData} postsData={postsData} userData= {userData} />}> </Route>
         <Route path= "/profile" element = {<Profile userData = {userData} postsData = {postsData} />}></Route>
         {/* <Route path= "/posts" element= {<PostList allUserData = {allUserData} setPostsData= {setPostsData} postsData={postsData} userData= { userData }/>}> </Route> */}
       </Routes>

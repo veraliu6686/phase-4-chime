@@ -8,6 +8,7 @@ function NavBar( {updateUser}){
     let navigate = useNavigate()
 
   const handleLogOut = () => {
+    if (window.confirm('Are you sure you want to log out ?')) {
     fetch(`/logout`, {
       method:"DELETE"
     })
@@ -17,7 +18,7 @@ function NavBar( {updateUser}){
         navigate("/")
       }
     })
-  }
+  }}
 
     return (
     <div className= "navbar">
