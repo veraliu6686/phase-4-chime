@@ -3,8 +3,29 @@ import { NavLink } from "react-router-dom"
 import { useState, useEffect } from "react"
 
 function Profile({userData, postsData}){
+    let userComments = userData.comments
     const [loading, setLoading] = useState(true)
-    
+
+    useEffect(() => {
+        const loadData = async () => {
+
+          // Wait for one second
+          await new Promise((r) => setTimeout(r, 1000));
+
+          setLoading((loading) => !loading);
+        };
+
+        loadData();
+      }, [])
+
+      if (loading) {
+        return (
+            <div >
+                <div className = "text-wrap">Chiming....</div>
+            </div>
+      )
+      }
+
     // render posts that belongs to the logged in user only
     const userPost = postsData.map((post) => {
         if (post.user_id === userData.id){
@@ -34,35 +55,35 @@ function Profile({userData, postsData}){
         }
     })
 
-    useEffect(() => {
-        const loadData = async () => {
-    
-          // Wait for one second
-          await new Promise((r) => setTimeout(r, 1000));
-    
-          setLoading((loading) => !loading);
-        };
-    
-        loadData();
-      }, [])
-    
-      if (loading) {
+    let userComment = userComments.map( comment => {
+
         return (
-            <div  >
-                <div className = "text-wrap">Chiming....</div>
+            <div>
+                <div className="user-div">
+                    <img className = "user-avatar" src = {userData.avatar}  alt = "user-avatar"/>
+                    <p className = "user-name"> {userData.username}</p>
+                </div>
+                <div className="comment-list">
+                    <p className = "user-content"> {comment.content}</p>
+                </div>
             </div>
-      )
-      }
+        )
+    })
+
+    console.log(userPost)
 
     return(
         <div className = "profile-con">
             {/* redirect to the post page */}
             <NavLink to="/posts">
-                <p id = "post-link">go checkout more posts</p>
+                <p id = "post-link"> Click here for more posts !</p>
             </NavLink>
-            <div className = "post-list">
-            {/* render posts */}
-            {userPost}
+            {userComment.length === 0 ? <h1>Nothing here 😪</h1> : <h1>Your Comments and Posts here:</h1>}
+            <div classNames = "post-list">
+                <div className="post-comments">
+                    {userComment}
+                </div>
+                {userPost}
             </div>
         </div>
     )

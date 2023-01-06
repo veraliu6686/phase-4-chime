@@ -8,11 +8,11 @@ function Welcome({userData, postsData}){
   // Mapping over Posts data to show each post with sliding css animations
   const posts = postsData.map( post => {
     return (
-      <div className="text-line">
-        <p key={post.id} > {post.description} </p>
+      <div key={post.id} className="text-line">
+        <p> {post.description} </p>
       </div>
     )
-  }) 
+  })
 
   // Same function and state as in the Home component
   useEffect(() => {
@@ -33,9 +33,9 @@ function Welcome({userData, postsData}){
 		   <div className="loading-message">Chiming....</div>
 		</div>
 	  )
-		  
+
 		}
-    
+
   else {
     // Returns welcome message page with user's username, avatar, and custom background
     return (
@@ -54,7 +54,7 @@ function Welcome({userData, postsData}){
           </div>
         </div>
       </div>
-      
+
       {/* CSS background animation */}
     <div className="section-center">
 		<div className="section-up">

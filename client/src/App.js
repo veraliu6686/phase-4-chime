@@ -52,7 +52,6 @@ function App() {
 
   // Rendering errors if they are present
   if(errors) return <h1>{errors}</h1>
-
   return (
     <>
       {userData.id ? <NavBar updateUser = {updateUser}/> : null}

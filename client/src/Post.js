@@ -13,7 +13,7 @@ function Post({postObj, userData, setPostsData}){
         setShowComment(!showComment)
     }
 
-    // Function to delete post 
+    // Function to delete post
     const deletePost = id => {
         setPostsData(currentPost => currentPost.filter( post => post.id !== id ))
     }
@@ -69,7 +69,7 @@ function Post({postObj, userData, setPostsData}){
                     <span className="post-tag">{postObj.tag}</span>
                     <div className="post-text">
                         <p className="post-description">{postObj.description}</p>
-                        <br></br>        
+                        <br></br>
                     </div>
                     <div className="post-user-info">
                         <img className="user-profile-pic" src={postObj.user_data.avatar} alt="user"/>
@@ -95,7 +95,7 @@ function Post({postObj, userData, setPostsData}){
                                 }
                             </div>
                             <i className="fa-solid fa-comment-dots btn-child" onClick = {flipPost}></i>
-                            { postObj.user_id === userData.id ? <i class="fa-solid fa-trash-can btn-child" onClick = {handleDelete}></i> : <></>}
+                            { postObj.user_id === userData.id ? <i className="fa-solid fa-trash-can btn-child" onClick = {handleDelete}></i> : <></>}
                         </div>
                     </div>
                 </div>
