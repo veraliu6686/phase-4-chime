@@ -47,7 +47,7 @@ function PostForm ({postsData, setPostsData, userData}){
             </div>
             {
                 showForm ?
-                {/*If form appears, show everything the form has*/}
+                // {/*If form appears, show everything the form has*/}
                 (<div className = "post-form">
                     <form onSubmit={handleSubmit}>
                         <input className = "post-input" onChange={(e) => setNewPostObj({...newPostObj, description: e.target.value})}
