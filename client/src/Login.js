@@ -78,7 +78,7 @@ function LoginPage ( {switchPage, updateUser}){
                 <button type="submit"> Login</button>
             </div>
         </form>
-        {/* error massage */}
+        {/* error message */}
         {errors? <div className = "error-message">{errors}</div>: null}
     </div>
     )
